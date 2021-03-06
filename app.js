@@ -6,11 +6,14 @@ const morgan = require("morgan");
 const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 // const bcrypt = require('bcrypt') // password hashing
-// const session = require('express-session')
+const session = require("express-session");
 
 /* Set up application and app port */
 const app = express();
 const PORT = 3000;
+
+//validation
+// const { check, validationResult } = require("express-validator");
 
 /* Dev use functions */
 app.use(morgan("dev")); // to monitor http requests in console
@@ -20,11 +23,13 @@ app.use(
   })
 ); // for parsing app/x-www-form-urlencoded, instead of body-parser
 
-/* Express Layout set and use functions */
+//Design, set up view engine
 app.set("view engine", "ejs");
-app.use("/static", express.static(path.join(__dirname, "public"))); // Used to call media and css files stored in the 'public' folder
+app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
-app.set("layout", "./layouts/full-width"); // Changed laypout to full-width one
+app.set("layout", "./layouts/full-width");
+
+// Changed laypout to full-width one
 
 /* Call database */
 // const db = require('./db')
@@ -45,4 +50,4 @@ app.listen(PORT, () => {
 });
 
 app.use("/", indexRouter);
-app.use("/", signupRouter);
+app.use("/signup", signupRouter);

@@ -9,18 +9,35 @@
   <body>
    
       <form action="/signup" method="POST">
-        <label>First name</label>
-        <input type="text" name="firstname" placeholder="First name" required />
-        <label>Second name</label>
-        <input type="text" name="surname" placeholder="Second name" required />
-        <label>Email Address*</label>
-        <input type="email" name="email" placeholder="Enter email" required />
-        <label>Password *</label>
-        <input type="password" name="psw"
-          placeholder="Min 8 characters - 1 uppercase & 1 lowercase letters, and 1 number" required />
-        <label>Password confirmation*</label>
-        <input type="password" name="pswCnf" placeholder="Confirm your password" required />
-        <input type="submit" class="button" value="SIGN ME UP" />
+        <div>
+            
+            <input type="text" name="firstname" required placeholder=" "  />
+            <label for="firstname">First name</label>
+        </div>
+        <div>
+            
+            <input type="text" name="secondname" required placeholder=" "  />
+            <label for="secondname">Second name</label>
+        
+        </div>
+        <div>
+           
+            <input type="email" name="email" required placeholder=" "  />
+            <label for="email">Email Address*</label>
+        </div>
+        <div>
+            <input type="password" id="password" name="password" required placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
+            <label for="password">Password</label>
+                <div class="requirements">
+                    Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+                </div>
+        </div>
+        <div>
+            <input type="password" id="password" name="password" required placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
+            <label for="password">Password</label>
+        </div>
+        <input type="submit" value="Sign Up" />
+
         <h4>Already sign up? <a href="/login">Sign in here!</a></h4>
       </form>
 </body>
