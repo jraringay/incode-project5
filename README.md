@@ -20,3 +20,4 @@
   * Added 'public' folder
     * Added main.css
   * Modified app.js to accomodate the above additions to the repository (see comments)
+* 07/03/21 - Added db_schema.md
