@@ -4,8 +4,9 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-// const session = require('express-session')
-// const db = require('../db.js')
+const session = require("express-session");
+/* Call database */
+const database = require("../database.js");
 
 /* Route definition */
 router.get("/", (req, res) => {

@@ -4,8 +4,11 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-// const session = require('express-session')
-// const db = require('../db.js')
+const session = require("express-session");
+
+/* Call database */
+const database = require("../database.js");
+
 //Pack for reading environmental variables
 const dotenv = require("dotenv");
 dotenv.config();
@@ -13,8 +16,8 @@ const API_KEI = process.env.API_KEI;
 
 /* Route definition */
 router.get("/", (req, res) => {
-  res.render("pages/signup", {
-    title: "Signup Page",
+  res.render("pages/login", {
+    title: "Login Page",
   });
 });
 
