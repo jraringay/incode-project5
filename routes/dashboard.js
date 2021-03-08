@@ -10,8 +10,9 @@ const database = require("../database.js");
 
 /* Route definition */
 router.get("/", (req, res) => {
-  res.render("pages/signup", {
-    title: "Signup Page",
+  res.render("pages/dashboard", {
+    title: "Dashboard Page",
+    user: "Conor",
   });
 });
 
