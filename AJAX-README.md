@@ -1,13 +1,80 @@
 # Retrieved from Jake's Sandbox Environment for Testing Purposes - https://github.com/jraringay/incode-project5-sandbox
 
-## Run index.html to test
+## Replace `scripts.js line 3` with your own API key
+## And then run index.html to test
 
-## scripts.js
+## scripts.js (v2)
+### This is a simple search function using ajax jquery ($.getJSON) - Refer to https://developers.themoviedb.org/3/search/search-movies for the proper documentation
+### In addition to v1, I made it so that the search results will include the movie's poster image, title, and release date.
+```
+$(document).ready(function() {
+  let api = 'https://api.themoviedb.org/3/search/movie';
+  let apiKey = 'Enter your API key here';
+  let language = "en-US";
+
+  $('#searchBtn').click(() => {
+    let query = $('#searchBar').val() // gets the value of the input text where the title keyword of a movie is typed in
+    $('.pagination').empty()
+    $('#searchResults').empty().append(
+      '<tr>' +
+        '<th>Poster</th>' +
+        '<th>Title</th>' +
+        '<th>Release Date</th>' +
+      '</tr>')
+    $.getJSON(api + '?api_key=' + apiKey + '&language=' + language + '&query=' + query)
+    .done(data => {
+      console.log(data) // this is only to see if the API call is working (can be seen in chrome dev tools)
+      $.each(data.results, (i, item) => {
+        $('#searchResults').append(
+          '<tr>' +
+            `<td><img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}">` +
+            '<td>' + item.title + '</td>' +
+            '<td>' + item.release_date + '</td>' +
+          '</tr>'
+        )
+        // $('#list').append('<li>' + item.title + '</li>') // See README.md for a (hopefully) comprehensive explanation
+      })
+      let pages = parseInt(data.total_pages)
+      for(let i = 1; i <= pages; i++) {
+        $('.pagination').append(
+          `<button id="searchResultPage${i}">${i}</button>`
+        )
+      }
+    })
+    .fail((jqxhr, textStatus, error) => {
+      let err = textStatus + ", " + error
+      console.log("Request Failed: " + err)
+    })
+  })
+
+
+
+});
+```
+
+### Base the JSON result from v1 for reference
+
+`.empty()` ensures it that every time the script runs, it removes the current instance of the script. Without `.empty()`, every time you make a search, the results stack from the previous search result. 
+
+`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}` from `scripts.js line 21` is how we retrieve the poster of a movie and is a result of me tinkering with chrome's dev tools.
+
+```
+let pages = parseInt(data.total_pages)
+for(let i = 1; i <= pages; i++) {
+  $('.pagination').append(
+    `<button id="searchResultPage${i}">${i}</button>`
+  )
+}
+```
+
+The above code is what I have conceptualised to address pagination since every instance of the search will only display 20 items from the entire results. The buttons don't do anything at the moment but I will be working on this when I wake up.
+
+## scripts.js (v1)
 ### This is a simple search function using ajax jquery ($.getJSON) - Refer to https://developers.themoviedb.org/3/search/search-movies for the proper documentation 
 ```
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
-  let apiKey = '6c0856c8aca4264172f895e370451731';
+  let apiKey = 'Enter your API key here';
   let language = "en-US";
 
   $('#searchBtn').click(() => {
