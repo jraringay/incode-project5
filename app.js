@@ -10,7 +10,13 @@ const session = require("express-session");
 
 /* Set up application and app port */
 const app = express();
+//const PORT = pocess.env.PORT
 const PORT = 3000;
+
+//Pack for reading environmental variables
+const dotenv = require("dotenv");
+dotenv.config();
+const API_KEI = process.env.API_KEI;
 
 //validation
 // const { check, validationResult } = require("express-validator");
@@ -44,6 +50,10 @@ app.use("/routes/index", indexRouter);
 const signupRouter = require("./routes/signup");
 app.use("/routes/signup", signupRouter);
 
+/* Movies */
+const moviesRouter = require("./routes/movies");
+app.use("/routes/movies", moviesRouter);
+
 /* Run App */
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -51,3 +61,4 @@ app.listen(PORT, () => {
 
 app.use("/", indexRouter);
 app.use("/signup", signupRouter);
+app.use("/movies", moviesRouter);
