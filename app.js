@@ -37,8 +37,8 @@ app.set("layout", "./layouts/full-width");
 
 // Changed laypout to full-width one
 
-/* Call database */
-const database = require("../database.js");
+// /* Call database */
+// const database = require("../database.js");
 
 /* Router Setup */
 
