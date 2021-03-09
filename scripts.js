@@ -1,6 +1,6 @@
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
-  let apiKey = 'f319b9901a620c81c0cef4309a67d6c9';
+  let apiKey = 'your api key here';
   let language = "en-US";
   //Load 1st page automatically for results
   $('#searchBtn').click(() => {
