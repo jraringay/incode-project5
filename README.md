@@ -45,3 +45,6 @@
   -10/03/21
   fully completed signup / signin / logout / session
   fully authenticated passport function
+  - Added Logout.js, Login.js, Signup.js, Dashboard.js
+  - Added Dashboard.ejs, Login.ejs, Signup.ejs
+  - Added passportConfig.js in main route to build passport authentication
