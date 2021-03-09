@@ -31,3 +31,11 @@
   - Added index.html
   - Added scripts.js
     -09/03/21 - Added sign in validation
+    Changed packet pgp(pg-promise) to pg
+    installed express-session & express-flash
+    init sessions for user sess detailes
+    installed passport & passport-local for validation and sessions ( for storing our logged in users session details)
+    installed passportConfig.js
+    -10/03/21
+    fully completed signup / signin / logout / session
+    fully authenticated passport function

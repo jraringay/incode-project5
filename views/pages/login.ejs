@@ -8,6 +8,16 @@
   </head>
   <body>
     <h1>Dummy login page</h1>
+    <ul>
+      <% if(messages.success_msg) { %>
+      <li><%= messages.success_msg %></li>
+      <% } %>
+    </ul>
+    <ul>
+      <% if(messages.error) {%>
+      <li><%= messages.error %></li>
+      <% } %>
+    </ul>
     <form action="/login" method="POST">
       <div>
         <input type="email" name="email" required placeholder=" " />
@@ -20,7 +30,6 @@
           name="password"
           required
           placeholder=" "
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
         />
         <label for="password">Password</label>
         <div class="requirements">

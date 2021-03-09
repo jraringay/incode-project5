@@ -33,29 +33,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 const API_KEI = process.env.API_KEI;
 
-//check if user if already authenticated
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect("/dashboard");
-  }
-  next();
-}
-
-/* Route definition */
-router.get("/", checkAuthenticated, (req, res) => {
-  res.render("pages/login", {
-    title: "Login Page",
-  });
+router.get("/", (req, res) => {
+  req.logOut();
+  req.flash("success_msg", "You have logged out!");
+  res.redirect("/");
 });
-
-router.post(
-  "/",
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/login",
-    failureFlash: true,
-  })
-);
 
 /* Export router to app.js */
 module.exports = router;

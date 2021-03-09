@@ -5,12 +5,32 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const flash = require("express-flash");
 /* Call database */
-const database = require("../database.js");
-// const { Pool } = require("pg");
+const { pool } = require("../database.js");
+const app = express();
+
+//ssessions
+app.use(
+  session({
+    resave: false,
+    secret: "shh/its1asecret",
+    saveUninitialized: false,
+    //secure:false
+  })
+);
+app.use(flash());
+
+//check if user if already authenticated
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/dashboard");
+  }
+  next();
+}
 
 /* Route definition */
-router.get("/", (req, res) => {
+router.get("/", checkAuthenticated, (req, res) => {
   res.render("pages/signup", {
     title: "Signup Page",
   });
@@ -37,15 +57,43 @@ router.post("/", async (req, res) => {
 
     let hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
-    const emailQuery =
-      "SELECT email FROM users WHERE email = '" + req.body.email + "';";
-    database.query(emailQuery, [email], (err, results) => {
-      if (err) {
-        throw err;
+
+    // Validation passed
+    pool.query(
+      `SELECT * FROM users
+          WHERE email = $1`,
+      [email],
+      (err, results) => {
+        if (err) {
+          console.log(err);
+        }
+        console.log("reaches here");
+        console.log(results.rows);
+        if (results.rows.length > 0) {
+          errors.push({ message: "Email already registered" });
+          res.render("pages/signup", { errors, title: "Sign up page" });
+        } else {
+          pool.query(
+            `INSERT INTO users (firstname, secondname, password, email) VALUES ($1, $2, $3, $4)
+            RETURNING user_id, password`,
+            [firstname, secondname, hashedPassword, email],
+            (err, results) => {
+              if (err) {
+                throw err;
+              }
+              console.log(results.rows);
+              req.flash(
+                "success_msg",
+                "You are now registered. Please log in!"
+              );
+              res.redirect("/login");
+            }
+          );
+        }
       }
-      console.log(results.rows);
-    });
+    );
   }
 });
+
 /* Export router to app.js */
 module.exports = router;

@@ -1,11 +1,15 @@
 # Retrieved from Jake's Sandbox Environment for Testing Purposes - https://github.com/jraringay/incode-project5-sandbox
 
 ## Replace `scripts.js line 3` with your own API key
+
 ## And then run index.html to test
 
 ## scripts.js (v2)
+
 ### This is a simple search function using ajax jquery ($.getJSON) - Refer to https://developers.themoviedb.org/3/search/search-movies for the proper documentation
+
 ### In addition to v1, I made it so that the search results will include the movie's poster image, title, and release date.
+
 ```
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
@@ -54,7 +58,7 @@ $(document).ready(function() {
 
 ### Base the JSON result from v1 for reference
 
-`.empty()` ensures it that every time the script runs, it removes the current instance of the script. Without `.empty()`, every time you make a search, the results stack from the previous search result. 
+`.empty()` ensures it that every time the script runs, it removes the current instance of the script. Without `.empty()`, every time you make a search, the results stack from the previous search result.
 
 `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}` from `scripts.js line 21` is how we retrieve the poster of a movie and is a result of me tinkering with chrome's dev tools.
 
@@ -70,11 +74,13 @@ for(let i = 1; i <= pages; i++) {
 The above code is what I have conceptualised to address pagination since every instance of the search will only display 20 items from the entire results. The buttons don't do anything at the moment but I will be working on this when I wake up.
 
 ## scripts.js (v1)
-### This is a simple search function using ajax jquery ($.getJSON) - Refer to https://developers.themoviedb.org/3/search/search-movies for the proper documentation 
+
+### This is a simple search function using ajax jquery ($.getJSON) - Refer to https://developers.themoviedb.org/3/search/search-movies for the proper documentation
+
 ```
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
-  let apiKey = 'Enter your API key here';
+  let apiKey = 'f319b9901a620c81c0cef4309a67d6c9';
   let language = "en-US";
 
   $('#searchBtn').click(() => {
@@ -95,7 +101,7 @@ $(document).ready(function() {
 */
 ```
 
-### The JSON result below is when the search string "superman" is used. 
+### The JSON result below is when the search string "superman" is used.
 
 ```
 {
@@ -506,7 +512,8 @@ $(document).ready(function() {
 }
 ```
 
-The ways to traverse through the JSON given that "data" is the base are the following: 
+The ways to traverse through the JSON given that "data" is the base are the following:
+
 - to get the page value -> data.page
 - to get to the results array -> data.results
 
