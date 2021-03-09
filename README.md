@@ -30,4 +30,8 @@
   - Added AJAX-README.md
   - Added index.html
   - Added scripts.js
-    -09/03/21 - Added sign in validation
+- 09/03/21 - Added sign in validation
+- 09/03/21 
+  - Working pagination function. 
+  - Discovered issue with package "bcrypt" can we please change to "bcryptjs" across all .js files there appears to be some issues for windows users. I have not done so in case it affects functionality on anyone's end
+  - Seeding initial SQL tables will be difficult as we cannot store hashed password, salt means same string gets hashed differently every time. 
