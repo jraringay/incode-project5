@@ -1,10 +1,17 @@
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
-  let apiKey = 'your api key here';
+  let apiKey = 'insert api key here';
   let language = "en-US";
   //Load 1st page automatically for results
   $('#searchBtn').click(() => {
     let query = $('#searchBar').val() // gets the value of the input text where the title keyword of a movie is typed in
+    $('.pagination').empty()
+    $('#searchResults').empty().append(
+      '<tr>' +
+        '<th>Poster</th>' +
+        '<th>Title</th>' +
+        '<th>Release Date</th>' +
+      '</tr>')
     $.getJSON(api + '?api_key=' + apiKey + '&language=' + language + '&query=' + query)
     .done(data => {
       console.log(data)
@@ -43,9 +50,22 @@ $(document).ready(function() {
                 '</tr>'
               )
             })
+            for(let j = i; j <= pages; j++) {
+              $('.pagination').append(
+                `<button id="searchResultPage" value="${j}">${j}</button>`
+              )
+            }
+          })
+          .fail((jqxhr, textStatus, error) => {
+            let err = textStatus + ", " + error
+            console.log("Request Failed: " + err)
           })
         })
       }   
+    })
+    .fail((jqxhr, textStatus, error) => {
+      let err = textStatus + ", " + error
+      console.log("Request Failed: " + err)
     })
   })
 })
