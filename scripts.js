@@ -1,21 +1,15 @@
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
-  let apiKey = 'Enter your API key here';
+  let apiKey = 'f319b9901a620c81c0cef4309a67d6c9';
   let language = "en-US";
-
+  //Load 1st page automatically for results
   $('#searchBtn').click(() => {
     let query = $('#searchBar').val() // gets the value of the input text where the title keyword of a movie is typed in
-    $('.pagination').empty()
-    $('#searchResults').empty().append(
-      '<tr>' +
-        '<th>Poster</th>' +
-        '<th>Title</th>' +
-        '<th>Release Date</th>' +
-      '</tr>')
     $.getJSON(api + '?api_key=' + apiKey + '&language=' + language + '&query=' + query)
     .done(data => {
-      console.log(data) // this is only to see if the API call is working (can be seen in chrome dev tools)
-      $.each(data.results, (i, item) => {
+      console.log(data)
+      let pages = parseInt(data.total_pages)
+      $.each(data.results, (dummyVary, item) => {
         $('#searchResults').append(
           '<tr>' +
             `<td><img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}">` +
@@ -23,58 +17,35 @@ $(document).ready(function() {
             '<td>' + item.release_date + '</td>' +
           '</tr>'
         )
-        // $('#list').append('<li>' + item.title + '</li>') // See README.md for a (hopefully) comprehensive explanation
       })
-      let pages = parseInt(data.total_pages)
-      for(let i = 1; i <= pages; i++) {
+    //Rest of pages (1 loaded automatically, but loop starts at 1 to give button ID)
+    for(let i = 1; i <= pages; i++) {
         $('.pagination').append(
-          `<button id="searchResultPage${i}">${i}</button>`
-        )
-      }
-    })
-    .fail((jqxhr, textStatus, error) => {
-      let err = textStatus + ", " + error
-      console.log("Request Failed: " + err)
+        `<button id="searchResultPage${i}">${i}</button>` //Set page numbers and buttons
+        ) 
+        $('#searchResultPage'+i).click(() => {
+          $('.pagination').empty()
+          $('#searchResults').empty().append(
+            '<tr>' + 
+            '<th>Poster</th>' +
+            '<th>Title</th>' +
+            '<th>Release Date</th>' +
+          '</tr>')
+          $.getJSON(api + '?api_key=' + apiKey + '&language=' + language + '&query=' + query + '&page=' +i)
+          .done(data => {
+            console.log(data) // this is only to see if the API call is working (can be seen in chrome dev tools)
+            $.each(data.results, (dummyVar, item) => {
+              $('#searchResults').append(
+                '<tr>' +
+                  `<td><img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}">` +
+                  '<td>' + item.title + '</td>' +
+                  '<td>' + item.release_date + '</td>' +
+                '</tr>'
+              )
+            })
+          })
+        })
+      }   
     })
   })
-
-  // Pagination Stuff - Not working
-  // $('#searchResultPage').click(() => {
-  //   let page = $('#searchResultPage').val()
-  //   console.log(page)
-  //   let query = $('#searchBar').val() // gets the value of the input text where the title keyword of a movie is typed in
-  //   $('.pagination').empty()
-  //   $('#searchResults').empty().append(
-  //     '<tr>' +
-  //       '<th>Poster</th>' +
-  //       '<th>Title</th>' +
-  //       '<th>Release Date</th>' +
-  //     '</tr>')
-  //   $.getJSON(api + '?api_key=' + apiKey + '&language=' + language + '&query=' + query + '&page=' + page)
-  //   .done(data => {
-  //     console.log(data) // this is only to see if the API call is working (can be seen in chrome dev tools)
-  //     $.each(data.results, (i, item) => {
-  //       $('#searchResults').append(
-  //         '<tr>' +
-  //           `<td><img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}">` +
-  //           '<td>' + item.title + '</td>' +
-  //           '<td>' + item.release_date + '</td>' +
-  //         '</tr>'
-  //       )
-  //       // $('#list').append('<li>' + item.title + '</li>') // See README.md for a (hopefully) comprehensive explanation
-  //     })
-  //     let pages = parseInt(data.total_pages)
-  //     for(let i = page; i <= pages; i++) {
-  //       $('.pagination').append(
-  //         `<button id="searchResultPage">${i}</button>`
-  //       )
-  //     }
-  //   })
-  //   .fail((jqxhr, textStatus, error) => {
-  //     let err = textStatus + ", " + error
-  //     console.log("Request Failed: " + err)
-  //   })
-  // })
-
-
-});
+})
