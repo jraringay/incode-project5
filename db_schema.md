@@ -34,7 +34,7 @@ Fields | Data type | Value | Is Primary Key? | Is Foreign Key? | Is Null?
 rating_id | SERIAL | N/A | Yes | No | N/A
 movie_id | INT | N/A | No | No | NOT NULL
 user_id | INT | N/A | No | Yes | NOT NULL
-rating_score | INT | 0 TO 5 | No | No | NOT NULL
+rating_score | INT | 1 TO 10 | No | No | NOT NULL
 comment | TEXT | N/A | No | No | N/A
 created_at | TIMESTAMPZ | N/A | No | No | NOT NULL
 updated_at | TIMESTAMPZ | N/A | No | No | N/A
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS ratings (
   rating_id SERIAL PRIMARY KEY,
   movie_id INT NOT NULL,
   user_id INT NOT NULL,
-  rating_score INT CHECK (rating_score >= 0 AND rating_score <= 5) NOT NULL,
+  rating_score INT CHECK (rating_score >= 1 AND rating_score <= 10) NOT NULL,
   comment TEXT,
   created_at TIMESTAMPZ NOT NULL,
   updated_at TIMESTAMPZ,
