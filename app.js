@@ -52,6 +52,7 @@ app.set("layout", "./layouts/full-width");
 app.use(flash());
 app.use("/scripts", express.static(path.join(__dirname, "scripts")))
 
+
 // Changed laypout to full-width one
 
 // /* Call database */

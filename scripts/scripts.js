@@ -1,26 +1,9 @@
 $(document).ready(function() {
   let api = 'https://api.themoviedb.org/3/search/movie';
-  let apiDisplay = 'https://api.themoviedb.org/3/movie/';
   let apiKey = 'f319b9901a620c81c0cef4309a67d6c9';
+  let apiDisplay = 'https://api.themoviedb.org/3/movie/';
   let language = "en-US";
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-  
-  // Display movie details
-  $('.movie').ready(() => {
-    let id = 550;
-    $.getJSON(apiDisplay + id + '?api_key=' + apiKey + '&language=' + language)
-    .done(data => {
-      console.log(data)
-      $('#movieDetail').append(
-        '<tr>' +
-          `<th>Title: <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}"></th>` +
-          `<th>Title: ${data.original_title}</th>` +
-          `<th>Title: ${data.release_date}</th>` +
-          `<th>Title: ${data.overview}</th>` +
-        '</tr>'
-      )
-    })
-  })
 
   // Search function (WIP)
   //Load 1st page automatically for results
@@ -38,11 +21,12 @@ $(document).ready(function() {
       console.log(data)
       let pages = parseInt(data.total_pages)
       $.each(data.results, (dummyVary, item) => {
+        let id = item.id
         $('#searchResults').append(
-          '<tr>' +
-            `<td><img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}">` +
-            '<td>' + item.title + '</td>' +
-            '<td>' + item.release_date + '</td>' +
+          '<tr class>' +
+            `<td class> <img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}"> </a> </td>` +
+            `<td class> <a href = "/movie?id=${id}">`  + item.title + '</td> </a>' +
+            '<td class>' + item.release_date + '</td>' +
           '</tr>'
         )
       })

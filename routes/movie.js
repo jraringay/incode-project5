@@ -23,8 +23,10 @@ app.use(
 
 /* Route definition */
 router.get("/", (req, res) => {
+   let id = req.query["id"]
   res.render("pages/movie", {
     title: "Movie",
+    id: id
   });
 });
 
