@@ -3,7 +3,7 @@
 /* Call required package modules */
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");

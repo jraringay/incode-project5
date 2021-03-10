@@ -5,7 +5,7 @@ const express = require("express");
 const morgan = require("morgan");
 const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
-const bcrypt = require("bcrypt"); // password hashing
+const bcrypt = require("bcryptjs"); // password hashing
 const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");
@@ -49,6 +49,7 @@ app.use(expressLayouts);
 app.set("layout", "./layouts/full-width");
 
 app.use(flash());
+app.use("/scripts", express.static(path.join(__dirname, "scripts")))
 
 // Changed laypout to full-width one
 
@@ -87,3 +88,4 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/logout", logoutRouter);
+
