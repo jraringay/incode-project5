@@ -1,15 +1,18 @@
 
+// Display movie details taken previously from script.js
+
 $(document).ready(function() {
 
-      // Display movie details
+  // call on script  
   var script = document.currentScript || 
   /*Polyfill*/ Array.prototype.slice.call(document.getElementsByTagName('script')).pop();
   
-  var params = (script.getAttribute('id') || '').split(/, */);
- id = params[0]
+  // take paramaters from attributes in <script>
+  // reference: https://stackoverflow.com/questions/5292372/how-to-pass-parameters-to-a-script-tag
+  var id = (script.getAttribute('id') || '').split(/, */);
 
 
-    let api = 'https://api.themoviedb.org/3/search/movie';
+    //let api = 'https://api.themoviedb.org/3/search/movie';
     let apiKey = 'f319b9901a620c81c0cef4309a67d6c9';
     let apiDisplay = 'https://api.themoviedb.org/3/movie/';
     let language = "en-US";
