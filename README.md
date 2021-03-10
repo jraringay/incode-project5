@@ -52,3 +52,4 @@
     - added /pages/movie.ejs
     - updated scripts/scripts.js
   - Update db_schema.md
+  - Passed id parameter across routes and ejs views to display movie details pages; this way can be implemented across all routes.
