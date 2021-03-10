@@ -9,7 +9,7 @@ $(document).ready(function() {
   
   // take paramaters from attributes in <script>
   // reference: https://stackoverflow.com/questions/5292372/how-to-pass-parameters-to-a-script-tag
-  var id = (script.getAttribute('id') || '').split(/, */);
+  var id = script.getAttribute('id')
 
 
     //let api = 'https://api.themoviedb.org/3/search/movie';
