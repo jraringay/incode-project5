@@ -21,7 +21,8 @@ dotenv.config();
 const API_KEI = process.env.API_KEI;
 
 //const PORT = pocess.env.PORT
-const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
+const PORT = 3000;
 
 //ssessions
 app.use(
@@ -78,6 +79,10 @@ app.use("/routes/dashboard", dashboardRouter);
 const logoutRouter = require("./routes/logout");
 app.use("/routes/logout", logoutRouter);
 
+/* Movie Details */
+const movieRouter = require("./routes/movie");
+app.use("/routes/movie", movieRouter);
+
 /* Run App */
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -88,4 +93,4 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/logout", logoutRouter);
-
+app.use("/movie", movieRouter);
