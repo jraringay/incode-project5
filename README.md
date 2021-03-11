@@ -53,3 +53,12 @@
     - updated scripts/scripts.js
   - Update db_schema.md
   - Passed id parameter across routes and ejs views to display movie details pages; this way can be implemented across all routes.
+- 11/03/21
+  - Added an autocomplete search function
+    - Added an autocomplete search bar on `views/pages/index.ejs` on lines 10-15 
+    - Added appropriate script in `scripts/scripts.js` on lines 8-48
+  - Modified `views/layouts/full-width.ejs` 
+    - Changed line 1 from `<%-body%>` to `%-body%` as it was interfering with the overall layout.
+    - Added an external css on line 10 ``//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css` used for the autocomplete search function.
+    - Added script `/scripts/jqueryui/jquery-ui.js` on line 19 to be used for the autocomplete search function.
+      - Also comes with the downloaded library files found on `/scripts/jqueryui`

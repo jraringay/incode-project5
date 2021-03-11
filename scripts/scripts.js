@@ -5,6 +5,48 @@ $(document).ready(function () {
   let language = "en-US";
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
+  /* Search Function w/ Autocomplete */
+  $('#movieSearch').autocomplete({
+    source: (req, res) => {
+      $.ajax({
+        url: api + '?api_key=' + apiKey + '&language=' + '&query=',
+        dataType: 'json',
+        data: {
+          query: req.term
+        },
+        success: (data) => {
+          // console.log(Object.values(data.results))
+          /* Take 'data' and convert it into a readable array
+           * where we can 'map' through it and get the values for
+           * the movie id and original_title. 
+           */
+          const newData = Object.values(data.results).map(data => {
+            return {
+              id: data.id,
+              title: data.original_title
+            }
+          })
+          console.log(newData)
+          res(newData)
+        }
+      })
+    },
+    minLength: 2,
+    // Once a search result is pressed, it will trigger the 'select' parameter
+    select: (event, ui) => {
+      let movieID = ui.item.id
+      console.log(movieID)
+    }
+  })
+  // This is where the search result display is manipulated
+  .autocomplete( "instance" )._renderItem = function( ul, item ) {
+    return $( "<li>" )
+    //.append(`<div data-id="${item.id}">${item.title}</div>`)
+    // redirect to the movie details page with the movie id as query param
+    .append(`<div><a href="/movie/${item.id}">${item.title}</a></div>`) 
+    .appendTo( ul );
+  }
+
   // Search function (WIP)
   //Load 1st page automatically for results
   $("#searchBtn").click(() => {

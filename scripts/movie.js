@@ -13,7 +13,7 @@ $(document).ready(function () {
       console.log(data);
 
       $(".cover").append(
-        `"<img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}">`
+        `<img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}">`
       );
 
       $(".title").append(`${data.original_title}`);
