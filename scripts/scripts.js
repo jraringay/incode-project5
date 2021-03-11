@@ -30,7 +30,7 @@ $(document).ready(function () {
           $("#searchResults").append(
             "<tr class>" +
               `<td class> <img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}"> </a> </td>` +
-              `<td class> <a href = "/movie?id=${id}">` +
+              `<td class> <a href = "/movie/${id}">` +
               item.title +
               "</td> </a>" +
               "<td class>" +

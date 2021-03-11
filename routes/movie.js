@@ -24,13 +24,14 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 /* Route definition */
-router.get("/", (req, res) => {
-  let id = req.query["id"];
+router.get("/:movie_id", (req, res) => {
+  //let id = req.body
+  
+  let movie_id = req.params.movie_id
   const user = req.user;
-  console.log(`what is our lovely ${id}`);
   res.render("pages/movie", {
     title: "Movie",
-    id: id,
+    movie_id: movie_id,
     user: user,
   });
 });

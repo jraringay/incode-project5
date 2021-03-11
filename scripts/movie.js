@@ -1,15 +1,5 @@
 // Display movie details taken previously from script.js
 $(document).ready(function () {
-  // call on script
-  var script =
-    document.currentScript ||
-    /*Polyfill*/ Array.prototype.slice
-      .call(document.getElementsByTagName("script"))
-      .pop();
-
-  // take paramaters from attributes in <script>
-  // reference: https://stackoverflow.com/questions/5292372/how-to-pass-parameters-to-a-script-tag
-  var id = script.getAttribute("id");
 
   //let api = 'https://api.themoviedb.org/3/search/movie';
   let apiKey = "f319b9901a620c81c0cef4309a67d6c9";
@@ -18,7 +8,7 @@ $(document).ready(function () {
 
   $(".movie").ready(() => {
     $.getJSON(
-      apiDisplay + id + "?api_key=" + apiKey + "&language=" + language
+      apiDisplay + movie_id + "?api_key=" + apiKey + "&language=" + language
     ).done((data) => {
       console.log(data);
 
@@ -32,3 +22,4 @@ $(document).ready(function () {
     });
   });
 });
+
