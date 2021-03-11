@@ -1,5 +1,3 @@
-/* Recycled router for home page */
-
 /* Call required package modules */
 const express = require("express");
 const router = express.Router();
@@ -7,10 +5,7 @@ const bcrypt = require("bcryptjs");
 const session = require("express-session");
 /* Call database */
 const database = require("../database.js");
-
-/* Set up application and app port */
 const app = express();
-
 //ssessions
 app.use(
   session({
@@ -21,12 +16,22 @@ app.use(
   })
 );
 
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
 /* Route definition */
 router.get("/", (req, res) => {
-   let id = req.query["id"]
+  let id = req.query["id"];
+  const user = req.user;
+  console.log(`what is our lovely ${id}`);
   res.render("pages/movie", {
     title: "Movie",
-    id: id
+    id: id,
+    user: user,
   });
 });
 

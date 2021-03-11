@@ -50,8 +50,7 @@ app.use(expressLayouts);
 app.set("layout", "./layouts/full-width");
 
 app.use(flash());
-app.use("/scripts", express.static(path.join(__dirname, "scripts")))
-
+app.use("/scripts", express.static(path.join(__dirname, "scripts")));
 
 // Changed laypout to full-width one
 
@@ -84,6 +83,10 @@ app.use("/routes/logout", logoutRouter);
 const movieRouter = require("./routes/movie");
 app.use("/routes/movie", movieRouter);
 
+/* Rating  */
+const ratingRouter = require("./routes/rating");
+app.use("/routes/rating", ratingRouter);
+
 /* Run App */
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -95,3 +98,4 @@ app.use("/login", loginRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/logout", logoutRouter);
 app.use("/movie", movieRouter);
+app.use("/rating", ratingRouter);

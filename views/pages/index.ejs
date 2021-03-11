@@ -7,15 +7,14 @@
     <title>Document</title>
   </head>
   <body>
+    <input type="text" id="searchBar" />
 
-  <input type="text" id="searchBar">
+    <button id="searchBtn">Search</button>
 
-  <button id="searchBtn">Search</button>
-  
-  <table id="searchResults"></table>
-  <ul id="list"></ul>
-  
-  <div class="pagination"></div>
+    <table id="searchResults"></table>
+    <ul id="list"></ul>
+
+    <div class="pagination"></div>
 
     <ul>
       <% if(messages.success_msg) { %>
@@ -23,14 +22,11 @@
       <% } %>
     </ul>
 
-    
     <a href="/login">Log in pls</a>
     <a href="/signup">Sign up</a>
+    <a href="/movie">Movie</a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/scripts/scripts.js"></script>
   </body>
 </html>
-
-
-
