@@ -47,7 +47,7 @@ router.post("/", (req, res) => {
       }
       console.log(results.rows);
       req.flash("success_msg", "You scored the movie!");
-      res.redirect(`/movie?id=${movie_id}`);
+      res.redirect(`/movie/${movie_id}`);
     }
   );
 });

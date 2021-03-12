@@ -271,3 +271,22 @@ body {
   padding: 0.2em;
   font-size: 1em;
 }
+#topfive {
+  margin: 0;
+  width: 90vw;
+  align-items: center;
+}
+#topfive > tbody > tr > td {
+  text-align: center;
+}
+#topfive > tbody {
+  width: 100%;
+}
+#topfive_row > td > img {
+  width: 15vw;
+  object-fit: contain;
+}
+#topfive_row2 > td {
+  width: 15vw;
+  object-fit: contain;
+}

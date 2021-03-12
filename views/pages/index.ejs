@@ -10,7 +10,7 @@
     <!-- Start of the autocomplete search bar-->
     <div class="ui-widget">
       <label for="movieSearch">Search movie: </label>
-      <input type="text" id="movieSearch">
+      <input type="text" id="movieSearch" />
     </div>
     <!-- End of the autocomplete search bar-->
 
@@ -28,6 +28,11 @@
       <li><%= messages.success_msg %></li>
       <% } %>
     </ul>
+
+    <table id="topfive">
+      <tr id="topfive_row"></tr>
+      <tr id="topfive_row2"></tr>
+    </table>
 
     <a href="/login">Log in pls</a>
     <a href="/signup">Sign up</a>
