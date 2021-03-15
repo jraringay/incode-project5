@@ -4,11 +4,14 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 const session = require("express-session");
 const flash = require("express-flash");
 /* Call database */
 const { pool } = require("../database.js");
 const app = express();
+//confirmation email
+const nodemailer = require("nodemailer");
 
 //ssessions
 app.use(
@@ -73,20 +76,62 @@ router.post("/", async (req, res) => {
           errors.push({ message: "Email already registered" });
           res.render("pages/signup", { errors, title: "Sign up page" });
         } else {
+          userActive = false;
           pool.query(
-            `INSERT INTO users (firstname, secondname, password, email) VALUES ($1, $2, $3, $4)
+            `INSERT INTO users (firstname, secondname, password, email, active) VALUES ($1, $2, $3, $4, $5)
             RETURNING user_id, password`,
-            [firstname, secondname, hashedPassword, email],
+            [firstname, secondname, hashedPassword, email, userActive],
             (err, results) => {
               if (err) {
                 throw err;
               }
-              console.log(results.rows);
-              req.flash(
-                "success_msg",
-                "You are now registered. Please log in!"
-              );
-              res.redirect("/login");
+              // Genereate hash for email confirmation link and save it in database
+              const emailConfHash = crypto.randomBytes(30).toString("hex");
+              pool
+                .query(
+                  "INSERT INTO email_confirmation (email, hash) values ($1, $2);",
+                  [email, emailConfHash]
+                )
+                .then(() => {
+                  const transporter = nodemailer.createTransport({
+                    host: "smtp.gmail.com",
+                    port: 587,
+                    secure: false,
+                    requireTLS: true,
+                    auth: {
+                      user: process.env.GMAIL_USERNAME,
+                      pass: process.env.GMAIL_PASSWORD,
+                    },
+                  });
+                  const mailOptions = {
+                    from: '"Movies" <jane.kotovich.test@gmail.com>',
+                    to: `${email}`,
+                    subject: "Please confirm your email address",
+                    html: `
+              <h3>Thank you for creating your account </h3>
+              <p>Please confirm your email address:</p>
+              <a href="http://localhost:3000/email/${emailConfHash}">http://$localhost:3000/email/${emailConfHash}</a>
+              `,
+                  };
+                  transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) {
+                      res.render("pages/error", {
+                        err: err,
+                        title: "Error | Movie database",
+                        current_user: req.session.user,
+                      });
+                    } else {
+                      console.log("Message sent: %s", info.messageId);
+                      // Redirect back to signup page with modal opened
+                      console.log(results.rows);
+                      req.flash(
+                        "success_msg",
+                        "You are now registered. Please confirm your email and log in!"
+                      );
+                      res.redirect("/login");
+                    }
+                  });
+                });
             }
           );
         }

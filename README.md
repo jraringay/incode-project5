@@ -62,3 +62,5 @@
     - Added an external css on line 10 ``//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css` used for the autocomplete search function.
     - Added script `/scripts/jqueryui/jquery-ui.js` on line 19 to be used for the autocomplete search function.
       - Also comes with the downloaded library files found on `/scripts/jqueryui`
+- 15/03/21
+  - Modified Jane's function that was already inserting user ratings to not accept doubles
