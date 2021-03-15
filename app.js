@@ -87,6 +87,10 @@ app.use("/routes/movie", movieRouter);
 const ratingRouter = require("./routes/rating");
 app.use("/routes/rating", ratingRouter);
 
+/* Email confirmation  */
+const emailConfRouter = require("./routes/email");
+app.use("/routes/email", emailConfRouter);
+
 /* Run App */
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -99,3 +103,4 @@ app.use("/dashboard", dashboardRouter);
 app.use("/logout", logoutRouter);
 app.use("/movie", movieRouter);
 app.use("/rating", ratingRouter);
+app.use("/email", emailConfRouter);

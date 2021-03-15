@@ -21,7 +21,20 @@ CREATE TABLE IF NOT EXISTS users (
   secondname VARCHAR(50) NOT NULL,
   password VARCHAR(100) NOT NULL,
   email VARCHAR(50) NOT NULL UNIQUE,
-  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+  active BOOLEAN NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+DROP TABLE IF EXISTS email_confirmation;
+
+CREATE TABLE IF NOT EXISTS email_confirmation (
+    hash_id SERIAL PRIMARY KEY,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    hash VARCHAR(60) NOT NULL,
+
+    FOREIGN KEY(email) 
+      REFERENCES users(email)
+      ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS ratings;
