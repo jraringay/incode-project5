@@ -42,26 +42,24 @@ router.post("/", (req, res) => {
   pool.query(
     `SELECT * FROM ratings WHERE user_id = $1 AND movie_id = $2 ;`, 
     [userId, movie_id])
-    /*(err, results) => {
-      if (err) {
-        throw err;
-      }*/
       .then((results) => {
         //console.log("Results:" + results.rows.length)
         if (results.rows.length === 1) {
-          pool.query(`UPDATE ratings set rating_score = $1, updated_at = NOW() where user_id = $2 and movie_id = $3 ;`,
+          pool.query(`UPDATE ratings SET rating_score = $1, updated_at = NOW() where user_id = $2 and movie_id = $3 ;`,
           [movieScore, userId, movie_id])
+         .then(()=> {
           req.flash("success_msg", "You scored the movie!")
           res.redirect(`/movie/${movie_id}`)
-          //pool.end()
+        })
         }
         
         else {
           pool.query(`INSERT INTO ratings (movie_id, user_id, rating_score) VALUES ($1, $2, $3) RETURNING user_id, movie_id ;`,
           [movie_id, userId, movieScore])
+          .then(()=> {
           req.flash("success_msg", "You scored the movie!")
           res.redirect(`/movie/${movie_id}`)
-          //pool.end()
+          })
         }
       })
       .catch((err) => {
