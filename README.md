@@ -64,3 +64,4 @@
       - Also comes with the downloaded library files found on `/scripts/jqueryui`
 - 15/03/21
   - Modified Jane's function that was already inserting user ratings to not accept doubles
+  - Added average rating for each movie
