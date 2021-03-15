@@ -17,11 +17,11 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
   user_id SERIAL PRIMARY KEY,
-  secondname VARCHAR(50) NOT NULL,
   firstname VARCHAR(50) NOT NULL,
-  email VARCHAR(50) NOT NULL UNIQUE,
+  secondname VARCHAR(50) NOT NULL,
   password VARCHAR(100) NOT NULL,
-  created_at TIMESTAMPZ NOT NULL
+  email VARCHAR(50) NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 DROP TABLE IF EXISTS ratings;
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS ratings (
   user_id INT NOT NULL,
   rating_score INT CHECK (rating_score >= 0 AND rating_score <= 5) NOT NULL,
   comment TEXT,
-  created_at TIMESTAMPZ NOT NULL,
-  updated_at TIMESTAMPZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP,
   CONSTRAINT fk_user
     FOREIGN KEY(user_id)
       REFERENCES users(user_id)

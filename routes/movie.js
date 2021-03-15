@@ -16,6 +16,7 @@ app.use(
   })
 );
 
+//Can put this function in route to force login
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -28,7 +29,9 @@ router.get("/:movie_id", (req, res) => {
   //let id = req.body
   
   let movie_id = req.params.movie_id
+
   const user = req.user;
+  //console.log(user)
   res.render("pages/movie", {
     title: "Movie",
     movie_id: movie_id,

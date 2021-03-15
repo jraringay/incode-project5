@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon -e js,ejs,css,html app.js",
-    "create-database": "createdb project_5",
-    "create-tables": "psql jane -h localhost -d project_5 -f sql/create_users_table.sql",
-    "seed-tables": "psql jane -h localhost -d project_5 -f sql/seed_users_table.sql"
+    "create-database": "sudo -u postgres psql postgres -h localhost -f sql/create_database.sql",
+    "create-tables": "sudo -u postgres psql postgres -h localhost -d project_5 -f sql/create_users_table.sql",
+    "seed-tables": "sudo -u postgres psql postgres -h localhost -d project_5 -f sql/seed_users_table.sql"
   },
   "keywords": [],
   "author": "Elly, Jane, and Jake",
