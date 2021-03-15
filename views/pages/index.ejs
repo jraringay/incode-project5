@@ -7,38 +7,62 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- Start of the autocomplete search bar-->
-    <div class="ui-widget">
-      <label for="movieSearch">Search movie: </label>
-      <input type="text" id="movieSearch" />
-    </div>
-    <!-- End of the autocomplete search bar-->
+    <section id="main">
+      <h1>Welcome to our perfect site!</h1>
+      <!-- Start of the autocomplete search bar-->
+      <div class="ui-widget">
+        <label for="movieSearch">Search movie: </label>
+        <input type="text" id="movieSearch" />
+      </div>
+      <!-- End of the autocomplete search bar-->
 
-    <input type="text" id="searchBar" />
+      <input type="text" id="searchBar" />
 
-    <button id="searchBtn">Search</button>
+      <button id="searchBtn">Search</button>
 
-    <table id="searchResults"></table>
-    <ul id="list"></ul>
+      <table id="searchResults"></table>
+      <ul id="list"></ul>
 
-    <div class="pagination"></div>
+      <div class="pagination"></div>
 
-    <ul>
-      <% if(messages.success_msg) { %>
-      <li><%= messages.success_msg %></li>
-      <% } %>
-    </ul>
+      <ul>
+        <% if(messages.success_msg) { %>
+        <li><%= messages.success_msg %></li>
+        <% } %>
+      </ul>
 
-    <table id="topfive">
-      <tr id="topfive_row"></tr>
-      <tr id="topfive_row2"></tr>
-    </table>
-
-    <a href="/login">Log in pls</a>
-    <a href="/signup">Sign up</a>
-    <a href="/movie">Movie</a>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/scripts/scripts.js"></script>
+      <table id="topfive">
+        <tr id="topfive_row"></tr>
+        <tr id="topfive_row2"></tr>
+      </table>
+      <h2>About Rotten Tomatoes®</h2>
+      <p>
+        Rotten Tomatoes and the Tomatometer score are the world’s most trusted
+        recommendation resources for quality entertainment. As the leading
+        online aggregator of movie and TV show reviews from critics, we provide
+        fans with a comprehensive guide to what’s Fresh – and what’s Rotten – in
+        theaters and at home. And the Tomatometer is just the beginning. We also
+        serve movie and TV fans with original editorial content on our site and
+        through social channels, produce fun and informative video series, and
+        hold live events for fans across the country, with our ‘Your Opinion
+        Sucks’ live shows. If you’re an entertainment fan looking for a
+        recommendation, or to share an opinion, you’ve come to the right place.
+      </p>
+      <h2>WHAT IS THE TOMATOMETER®?</h2>
+      <p>
+        The Tomatometer score – based on the opinions of hundreds of film and
+        television critics – is a trusted measurement of critical recommendation
+        for millions of fans. Back in the days of the open theaters, when a play
+        was particularly atrocious, the audience expressed their dissatisfaction
+        by not only booing and hissing at the stage, but also throwing whatever
+        was at hand – vegetables and fruits included. The Tomatometer score
+        represents the percentage of professional critic reviews that are
+        positive for a given film or television show. A Tomatometer score is
+        calculated for a movie or TV show after it receives at least five
+        reviews.
+      </p>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="/scripts/scripts.js"></script>
+    </section>
   </body>
 </html>

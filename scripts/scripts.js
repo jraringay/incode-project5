@@ -13,13 +13,17 @@ $(document).ready(function () {
       console.log(data);
 
       $.each(data.results, (index, item) => {
+        let id = item.id;
         $("#topfive_row").append(
-          `<td class> <img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}"> </td>`
+          `<td class> <a href = "/movie/${id}"> <img id="searchPosterResults" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}"> </a> </td>`
         );
         return index < 4;
       });
       $.each(data.results, (index, item) => {
-        $("#topfive_row2").append(`<td class> ${item.original_title} </td>`);
+        let id = item.id;
+        $("#topfive_row2").append(
+          `<td class> <a href = "/movie/${id}"> ${item.original_title} </a> </td>`
+        );
         return index < 4;
       });
     });

@@ -7,7 +7,14 @@
     <title>Document</title>
   </head>
   <body id="movie_page">
+    <section id="main">
+ 
     
+      <section class="movieDetail">
+        <h1 class="title"></h1>
+        <div class ="movie-detail-flex">
+        <div class="cover"></div>
+        <div class="movie-detail-flex-descr">
     <% if (user) { %>
     <section class="rating_form">
     <form action="/rating" method="POST">
@@ -134,12 +141,12 @@
       <li><%= messages.success_msg %></li>
       <% } %>
     </ul>
-    <section class="movieDetail">
-      <div class="cover"></div>
-      <h2 class="title"></h2>
-      <h2 class = "user-rating"> <%= averageDisplayed %> </h2>
+    
+    <h2 class = "user-rating"> <%= averageDisplayed %> </h2>
       <h6 class="release_date"></h6>
       <p class="overview"></p>
+    </div>
+    </div>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -147,6 +154,8 @@
     var movie_id = "<%= movie_id  %>"
     </script>
     <script src="/scripts/movie.js"></script>
+    </section>
     </body>
 </html>
+
 
