@@ -103,6 +103,16 @@ li > a > .logout_logo {
 header > ul > li:not(:last-child):not(:first-child) {
   margin-right: 0.5em;
 }
+.head_descr {
+  display: none;
+}
+header > ul > li > a:hover > div > p {
+  display: inline-block;
+  font-size: 0.8em;
+  width: 5vw;
+  vertical-align: -185%;
+  opacity: 0.7;
+}
 
 form {
   max-width: 450px;
@@ -165,7 +175,8 @@ form > div > input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
 form
   > div
   > input[type="password"]:invalid:not(:focus):not(:placeholder-shown) {
-  background: rgb(53, 53, 53);
+  background: #df3e56;
+  opacity: 0.7;
 }
 
 form
@@ -375,7 +386,7 @@ a:-webkit-any-link {
   font-size: 1em;
 }
 #topfive {
-  margin: 0;
+  margin: 10vh auto;
   width: 90vw;
   align-items: center;
   font-family: Montserrat;
@@ -389,6 +400,10 @@ a:-webkit-any-link {
 }
 #topfive_row > td > a > img {
   width: 15vw;
+  object-fit: contain;
+}
+#topfive_row > td > a:hover > img {
+  width: 16vw;
   object-fit: contain;
 }
 #topfive_row2 > td {
