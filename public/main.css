@@ -12,7 +12,11 @@ h1 {
   font-size: 4em;
   color: rgb(233, 231, 231);
 }
-h2,
+h2 {
+  font-family: P_Marker;
+  font-size: 2.5em;
+  color: rgb(233, 231, 231);
+}
 h3,
 h4,
 h5,
@@ -23,6 +27,9 @@ p {
 }
 p {
   line-height: 1.7em;
+}
+.label_for_search {
+  color: rgb(233, 231, 231);
 }
 
 body {
