@@ -63,7 +63,8 @@ header > ul > li > a > .home_logo,
 header > ul > li > a > .movies_logo,
 header > ul > li > a > .login_logo,
 header > ul > li > a > .signup_logo,
-header > ul > li > a > .logout_logo {
+header > ul > li > a > .logout_logo,
+header > ul > li > a > .dash_logo {
   padding: 0.5em;
   width: 6vw;
   height: 6vh;
@@ -95,6 +96,12 @@ li > a > .signup_logo {
 }
 li > a > .logout_logo {
   background-image: url("images/icons8-bam-96.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+li > a > .dash_logo {
+  background-image: url("images/icons8-planet-96.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -421,4 +428,30 @@ footer {
 }
 .wrapper {
   flex: 1 0 auto;
+}
+
+.user_profile {
+  color: white;
+  list-style-type: none;
+}
+.user_rating {
+  background-color: rgb(233, 231, 231);
+  color: rgb(43, 40, 40);
+  row-gap: 1em;
+  margin: 10vh auto;
+  padding: 2em;
+  align-items: center;
+  border: 1px solid black;
+}
+.message_success,
+.error {
+  color: white;
+}
+
+.mostreviewed {
+  margin: 4vh auto;
+}
+.mostreviewed > tbody > tr > td > a > img {
+  width: 10vw;
+  object-fit: contain;
 }

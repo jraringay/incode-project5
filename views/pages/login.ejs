@@ -7,14 +7,53 @@
     <title>Login</title>
   </head>
   <body>
+    <header>
+      <ul>
+        <li>
+          <a href="/">
+            <div class="home_logo"><p class="head_descr">Home</p></div>
+          </a>
+        </li>
+        <li>
+          <a href="/movies">
+            <div class="movies_logo"><p class="head_descr">All movies</p></div>
+          </a>
+        </li>
+        <% if (!user) { %>
+
+        <li>
+          <a href="/login">
+            <div class="login_logo"><p class="head_descr">Login</p></div>
+          </a>
+        </li>
+        <li>
+          <a href="/signup">
+            <div class="signup_logo"><p class="head_descr">Sign up</p></div>
+          </a>
+        </li>
+        <%} %> <% if (user) { %>
+        <li>
+          <a href="/dashboard">
+            <div class="dash_logo"><p class="head_descr">Dashboard</p></div>
+          </a>
+        </li>
+        <li>
+          <a href="/logout">
+            <div class="logout_logo"><p class="head_descr">Logout</p></div>
+          </a>
+        </li>
+        <%} %>
+      </ul>
+    </header>
+
     <section id="main">
       <h1>Dummy login page</h1>
-      <ul>
+      <ul class="message_success">
         <% if(messages.success_msg) { %>
         <li><%= messages.success_msg %></li>
         <% } %>
       </ul>
-      <ul>
+      <ul class="error">
         <% if(messages.error) {%>
         <li><%= messages.error %></li>
         <% } %>

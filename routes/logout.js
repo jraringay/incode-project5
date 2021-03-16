@@ -34,6 +34,7 @@ dotenv.config();
 const API_KEI = process.env.API_KEI;
 
 router.get("/", (req, res) => {
+  const user = req.user;
   req.logOut();
   req.flash("success_msg", "You have logged out!");
   res.redirect("/");

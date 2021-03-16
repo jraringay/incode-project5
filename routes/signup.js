@@ -34,8 +34,10 @@ function checkAuthenticated(req, res, next) {
 
 /* Route definition */
 router.get("/", checkAuthenticated, (req, res) => {
+  const user = req.user;
   res.render("pages/signup", {
     title: "Signup Page",
+    user: user,
   });
 });
 

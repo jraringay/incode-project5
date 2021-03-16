@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Top Rated movies</title>
   </head>
   <body>
     <header>
@@ -44,33 +44,15 @@
         <%} %>
       </ul>
     </header>
+
     <section id="main">
-      <h1>Hello <%= userName %> you sign in</h1>
-
-      <ul class="user_profile">
-        <li><%= user.firstname %></li>
-        <li><%= user.secondname %></li>
-        <li><%= user.email %></li>
-      </ul>
-      <% if (userResult.length>0){%>
-      <table class="user_rating">
-        <% for ( i = 0; i< userResult.length; i++) { %>
-
-        <tr>
-          <td>
-            Movie is:
-            <a href="/movie/<%=userResult[i].movie_id%>"
-              ><%= userResult[i].movie_id%></a
-            >
-          </td>
-          <td>Rating is: <%= userResult[i].rating_score%></td>
-        </tr>
-
-        <%} %>
+      <h1>Here are most reviewed movies! Maybe you want to review one!</h1>
+      <table class="mostreviewed">
+        <tr id="mostreviewed_row"></tr>
+        <tr id="mostreviewed_row2"></tr>
       </table>
-      <%} %>
-
-      <a href="/">Start searching movies</a>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="/scripts/script_allmovies.js"></script>
     </section>
   </body>
 </html>

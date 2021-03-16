@@ -6,12 +6,10 @@ $(document).ready(function () {
   let popularMovie = "https://api.themoviedb.org/3/movie/popular";
   // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 
-  $(".top_five").ready(() => {
+  $("#topfive").ready(() => {
     $.getJSON(
       popularMovie + "?api_key=" + apiKey + "&language=" + language + "&page=1"
     ).done((data) => {
-      console.log(data);
-
       $.each(data.results, (index, item) => {
         let id = item.id;
         $("#topfive_row").append(

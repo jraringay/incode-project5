@@ -91,6 +91,10 @@ app.use("/routes/rating", ratingRouter);
 const emailConfRouter = require("./routes/email");
 app.use("/routes/email", emailConfRouter);
 
+/* all movies router  */
+const allMoviesRouter = require("./routes/allmovies");
+app.use("/routes/allmovies", allMoviesRouter);
+
 /* Run App */
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -104,3 +108,4 @@ app.use("/logout", logoutRouter);
 app.use("/movie", movieRouter);
 app.use("/rating", ratingRouter);
 app.use("/email", emailConfRouter);
+app.use("/movies", allMoviesRouter);

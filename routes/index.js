@@ -23,8 +23,10 @@ app.use(
 
 /* Route definition */
 router.get("/", (req, res) => {
+  const user = req.user;
   res.render("pages/index", {
     title: "Home Page",
+    user: user,
   });
 });
 

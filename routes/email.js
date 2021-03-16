@@ -30,6 +30,10 @@ router.get("/:id", (req, res) => {
           pool.query("DELETE from email_confirmation WHERE hash = $1;", [
             hashedString,
           ]);
+          req.flash(
+            "success_msg",
+            "Your email has been confirmed! Now you can log in!"
+          );
           res.redirect("/login");
         })
         .catch((err) =>

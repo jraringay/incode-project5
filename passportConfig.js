@@ -24,7 +24,9 @@ function initialize(passport) {
               console.log(err);
             }
             if (isMatch) {
-              return done(null, user);
+              if (!user.active) {
+                return done(null, false, { message: "Email is not confirmed" });
+              } else return done(null, user);
             } else {
               //password is incorrect
               return done(null, false, { message: "Password is incorrect" });
