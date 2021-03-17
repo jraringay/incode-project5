@@ -5,14 +5,15 @@ $(document).ready(function () {
   let apiDisplay = "https://api.themoviedb.org/3/movie/";
   let language = "en-US";
 
-  $(".user_profile_table").ready(() => {
+  $(".user_rating").ready(() => {
+    let query = $("#usermovielistID").attr("alt");
     $.getJSON(
-      apiDisplay + movie_id + "?api_key=" + apiKey + "&language=" + language
+      apiDisplay + query + "?api_key=" + apiKey + "&language=" + language
     ).done((data) => {
       console.log(data);
 
-      $(".mini_movie").append(
-        `<img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2${data.poster_path}">`
+      $("#usermovielistID").append(
+        `<img src="https://image.tmdb.org/t/p/w185/${data.poster_path}">`
       );
     });
   });
