@@ -49,7 +49,7 @@ router.get("/:movie_id", (req, res) => {
       averageRating = `Average: ${total/n.toFixed(2)}`
     }
     else averageRating = "This movie has yet to be rated"
-  res.render("pages/movie", {
+    res.render("pages/movie", {
     title: "Movie",
     movie_id: movie_id,
     user: user,
