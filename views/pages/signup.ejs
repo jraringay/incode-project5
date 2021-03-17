@@ -19,7 +19,6 @@
             <div class="movies_logo"><p class="head_descr">All movies</p></div>
           </a>
         </li>
-        <% if (!user) { %>
         <li>
           <a href="/login">
             <div class="login_logo"><p class="head_descr">Login</p></div>
@@ -30,21 +29,8 @@
             <div class="signup_logo"><p class="head_descr">Sign up</p></div>
           </a>
         </li>
-        <%} %> <% if (user) { %>
-          <li>
-            <a href="/dashboard">
-              <div class="dash_logo"><p class="head_descr">Dashboard</p></div>
-            </a>
-          </li>
-        <li>
-          <a href="/logout">
-            <div class="logout_logo"><p class="head_descr">Logout</p></div>
-          </a>
-        </li>
-        <%} %>
       </ul>
     </header>
-    
     <section id="main">
       <h1>Sign up</h1>
       <ul class="error">
@@ -54,28 +40,22 @@
             <% }) %>
           <% } %>
       </ul>
-   
       <form action="/signup" method="POST">
         <div>
-            
             <input type="text" name="firstname" required placeholder=" " pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" />
             <label for="firstname">First name</label>
             <div class="requirements">
                 Please write your first name
              </div>
-
         </div>
         <div>
-            
             <input type="text" name="secondname" required placeholder=" "  pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"/>
             <label for="secondname">Second name</label>
             <div class="requirements">
                Please write your second name
             </div>
-        
         </div>
         <div>
-           
             <input type="email" name="email" required placeholder=" " pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" />
             <label for="email">Email Address*</label>
             <div class="requirements">
@@ -94,7 +74,6 @@
             <label for="password2">Password confirmation</label>
         </div>
         <input type="submit" value="Sign Up" />
-
         <h4>Already sign up? <a href="/login">Sign in here!</a></h4>
       </form>
       </section>
