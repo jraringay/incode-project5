@@ -1,4 +1,4 @@
-// Display movie details taken previously from script.js
+// Display movie top rated movies by calling API
 $(document).ready(function () {
   let apiKey = "f319b9901a620c81c0cef4309a67d6c9";
   let language = "en-US";

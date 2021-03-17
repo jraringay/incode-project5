@@ -1,19 +1,21 @@
-/* Recycled router for home page */
-
-/* Call required package modules */
+// Call required package modules 
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const session = require("express-session");
 const flash = require("express-flash");
-/* Call database */
+
+// Call database 
 const { pool } = require("../database.js");
+
+// Set up application 
 const app = express();
-//confirmation email
+
+//Confirmation email package
 const nodemailer = require("nodemailer");
 
-//ssessions
+//sessions to track user
 app.use(
   session({
     resave: false,
@@ -32,7 +34,7 @@ function checkAuthenticated(req, res, next) {
   next();
 }
 
-/* Route definition */
+// Route definition for signup
 router.get("/", checkAuthenticated, (req, res) => {
   const user = req.user;
   res.render("pages/signup", {
@@ -41,10 +43,14 @@ router.get("/", checkAuthenticated, (req, res) => {
   });
 });
 
+//Post new user data
 router.post("/", async (req, res) => {
+
+  //Set up variables to store inout data
   let { firstname, secondname, password, password2, email } = req.body;
-  console.log(firstname, secondname, password, password2, email);
   let errors = [];
+
+  //Set up form validation and requirements
   if (!firstname || !secondname || !email || !password || !password2) {
     errors.push({ message: "Please enter all fields" });
   }
@@ -55,11 +61,8 @@ router.post("/", async (req, res) => {
     errors.push({ message: "Passwords do not match" });
   }
   if (errors.length > 0) {
-    console.log(errors);
     res.render("pages/signup", { errors, title: "Sign up page" });
   } else {
-    //FORM VALIDATION HAS PASSED
-
     let hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
 
@@ -70,10 +73,7 @@ router.post("/", async (req, res) => {
       [email],
       (err, results) => {
         if (err) {
-          console.log(err);
         }
-        console.log("reaches here");
-        console.log(results.rows);
         if (results.rows.length > 0) {
           errors.push({ message: "Email already registered" });
           res.render("pages/signup", { errors, title: "Sign up page" });
@@ -123,9 +123,7 @@ router.post("/", async (req, res) => {
                         current_user: req.session.user,
                       });
                     } else {
-                      console.log("Message sent: %s", info.messageId);
                       // Redirect back to signup page with modal opened
-                      console.log(results.rows);
                       req.flash(
                         "success_msg",
                         "You are now registered. Please confirm your email and log in!"

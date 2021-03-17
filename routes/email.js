@@ -1,19 +1,23 @@
+// Call required package modules
 const express = require("express");
 const router = express.Router();
-/* Call database */
+
+// Call database 
 const { pool } = require("../database.js");
-//check if user if already authenticated
 
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect("/dashboard");
-  }
-  next();
-}
 
+// function checkAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return res.redirect("/dashboard");
+//   }
+//   next();
+// }
+
+//Set up route to display email confirmation to specific user
 router.get("/:id", (req, res) => {
   const hashedString = req.params.id;
 
+  //Chained requests to database that depend on whether the email has been confirmed
   pool
     .query(`SELECT email FROM email_confirmation WHERE hash = $1;`, [
       hashedString,
@@ -53,5 +57,5 @@ router.get("/:id", (req, res) => {
     );
 });
 
-/* Export router to app.js */
+// Export router to app.js
 module.exports = router;

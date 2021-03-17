@@ -1,22 +1,20 @@
-/* Recycled router for home page */
-
-/* Call required package modules */
+// Call required package modules
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const session = require("express-session");
-/* Call database */
-const database = require("../database.js");
-/* Call required package modules */
+
+// Call database 
+const { pool } = require("../database.js");
+
+// Call required package modules 
 const passport = require("passport");
 const initializePassport = require("../passportConfig");
 initializePassport(passport);
-const { pool } = require("../database.js");
 
-/* Set up application and app port */
+// Set up application
 const app = express();
 
-//ssessions
+//sessions to track users
 app.use(
   session({
     resave: false,
@@ -26,6 +24,7 @@ app.use(
   })
 );
 
+//Middleware function to check that user is logged 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -33,7 +32,7 @@ function checkNotAuthenticated(req, res, next) {
   res.redirect("/login");
 }
 
-/* Route definition */
+//Set up route to display user profile on dashboard
 router.get("/", checkNotAuthenticated, (req, res) => {
   const userName = req.user.firstname + " " + req.user.secondname;
   const user = req.user;
@@ -53,28 +52,9 @@ router.get("/", checkNotAuthenticated, (req, res) => {
         user: user,
         userResult: userResult,
       });
-      // console.log(results.rows);
-      // let movies = [];
-      // let ratings = [];
-      // if (results.rows.length > 0) {
-      //   for (i = 0; i < results.rows.length; i++) {
-      //     movies.push(results.rows[i].movie_id);
-      //     ratings.push(results.rows[i].rating_score);
-      //   }
-      //   console.log(movies, ratings);
-      //   return movies, ratings;
-      // }
     }
   );
-
-  // console.log(user);
-
-  // res.render("pages/dashboard", {
-  //   title: "Dashboard Page",
-  //   userName: userName,
-  //   user: user,
-  // });
 });
 
-/* Export router to app.js */
+// Export router to app.js 
 module.exports = router;

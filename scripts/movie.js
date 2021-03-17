@@ -1,7 +1,5 @@
-// Display movie details taken previously from script.js
+// Display movie details call API
 $(document).ready(function () {
-
-  //let api = 'https://api.themoviedb.org/3/search/movie';
   let apiKey = "f319b9901a620c81c0cef4309a67d6c9";
   let apiDisplay = "https://api.themoviedb.org/3/movie/";
   let language = "en-US";

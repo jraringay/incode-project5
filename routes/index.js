@@ -1,27 +1,21 @@
-/* Recycled router for home page */
-
-/* Call required package modules */
+// Call required package modules
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const session = require("express-session");
-/* Call database */
-const database = require("../database.js");
 
-/* Set up application and app port */
+// Set up application
 const app = express();
 
-//ssessions
+//sessions to track users
 app.use(
   session({
     resave: false,
     secret: "shh/its1asecret",
     saveUninitialized: false,
-    //secure:false
   })
 );
 
-/* Route definition */
+//Route definition for home page
 router.get("/", (req, res) => {
   const user = req.user;
   res.render("pages/index", {
@@ -30,5 +24,5 @@ router.get("/", (req, res) => {
   });
 });
 
-/* Export router to app.js */
+// Export router to app.js 
 module.exports = router;
