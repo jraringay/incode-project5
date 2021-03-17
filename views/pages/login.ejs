@@ -19,8 +19,6 @@
             <div class="movies_logo"><p class="head_descr">All movies</p></div>
           </a>
         </li>
-        <% if (!user) { %>
-
         <li>
           <a href="/login">
             <div class="login_logo"><p class="head_descr">Login</p></div>
@@ -31,21 +29,8 @@
             <div class="signup_logo"><p class="head_descr">Sign up</p></div>
           </a>
         </li>
-        <%} %> <% if (user) { %>
-        <li>
-          <a href="/dashboard">
-            <div class="dash_logo"><p class="head_descr">Dashboard</p></div>
-          </a>
-        </li>
-        <li>
-          <a href="/logout">
-            <div class="logout_logo"><p class="head_descr">Logout</p></div>
-          </a>
-        </li>
-        <%} %>
       </ul>
     </header>
-
     <section id="main">
       <h1>Dummy login page</h1>
       <ul class="message_success">
@@ -77,9 +62,7 @@
             least one uppercase, one lowercase, and one number.
           </div>
         </div>
-
         <input type="submit" value="Login" />
-
         <h4>Not with us yet? <a href="/signup">Sign up here!</a></h4>
       </form>
     </section>
